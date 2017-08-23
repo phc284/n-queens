@@ -155,8 +155,12 @@
       //iterate through each row
       for (var rowIndex = 0; rowIndex < boardSize; rowIndex++) {
         if (columnIndex < boardSize) {
-          //add value of element at input index+1
-          count += this.get(rowIndex)[columnIndex];
+          if (this.get(rowIndex)[columnIndex] === undefined) {
+            count += 0;
+          } else {
+            //add value of element at input index+1
+            count += this.get(rowIndex)[columnIndex];
+          }
           columnIndex++;
         }
       }
@@ -176,18 +180,17 @@
       //declare boolean if there is any major diagonal conflict
       var hasDiagConflict = false;
 
-      //iterate through rows
-      for (var i = 0; i < boardSize - 1; i++) {
-        var row = this.get(i);
-        //iterate through column
-        for (var j = 0; j < row.length - 1; j++) {
-          //check each major diagonal at column index for conflict
-          if (this.hasMajorDiagonalConflictAt(j)) {
-            hasDiagConflict = this.hasMajorDiagonalConflictAt(j);
-          }
+      //iterate through columns
+      for (var j = -2; j < boardSize - 1; j++) {
+        //check each major diagonal at column index for conflict
+        if (this.hasMajorDiagonalConflictAt(j)) {
+          hasDiagConflict = true;
         }
       }
+      // }
       return hasDiagConflict; // fixme
+
+      // ****** Come up with algorithm to set start value for j with different board sizes ************
     },
 
 
@@ -197,6 +200,7 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      
       return false; // fixme
     },
 
