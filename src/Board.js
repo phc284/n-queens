@@ -181,7 +181,7 @@
       var hasDiagConflict = false;
 
       //iterate through columns
-      for (var j = -2; j < boardSize - 1; j++) {
+      for (var j = 2 - boardSize; j < boardSize - 1; j++) {
         //check each major diagonal at column index for conflict
         if (this.hasMajorDiagonalConflictAt(j)) {
           return true;
@@ -190,7 +190,6 @@
       // }
       return false; // fixme
 
-      // ****** Come up with algorithm to set start value for j with different board sizes ************
     },
 
 
@@ -229,7 +228,7 @@
       var boardSize = this.get('n');
       var hasConflict = false;
       
-      for (var i = 6; i >= 0; i--) {
+      for (var i = boardSize + 2; i >= 0; i--) {
         if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }
